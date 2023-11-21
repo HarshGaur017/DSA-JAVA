@@ -13,6 +13,5 @@ public class StringPalindrome {
     public static void main(String[] args) {
         String str = "racecar";
         System.out.println(isPalindrome(str));
-        
     }
 }
