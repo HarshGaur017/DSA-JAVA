@@ -1,0 +1,85 @@
+import java.util.Arrays;
+
+public class Main
+{
+    static int linear_s(int[] nums, int target) {
+        for(int i=0; i < nums.length; i++){
+            if (nums[i] == target){
+                return i;
+            }
+        }
+        return -1;
+    }
+    
+    static int sum_of_array(int nums[]){
+        int sumValue = 0;
+        for(int i=0; i<nums.length; i++){
+             sumValue += nums[i];
+        }
+        return sumValue;
+    }
+    
+    static boolean check_sorted(int nums[]){
+        for(int i=1; i<nums.length; i++){
+            if(nums[i] < nums[i-1]){
+                return false;
+            }
+        }
+            return true;
+    }
+    
+    static void reverse_of_array(int nums[]){
+        int start = 0;
+        int end = nums.length - 1;
+        
+        while(start < end){
+            int temp = nums[start];
+            nums[start] = nums[end];
+            nums[end] = temp;
+            start++;
+            end--;
+        }
+        
+        for(int i: nums){
+            System.out.println(" " + i);
+        }
+    }
+    
+    static int second_largest(int nums[]){
+        int largest = Integer.MIN_VALUE;
+        int secondLargest = Integer.MIN_VALUE;
+        
+        for(int i=0; i<nums.length; i++){
+            if(nums[i] > largest){
+                secondLargest = largest;
+                
+                largest = nums[i];
+            } else if(nums[i] > secondLargest && nums[i] != largest){
+                secondLargest = nums[i];
+            }
+        }
+        return secondLargest;
+    }
+    
+	public static void main(String[] args) {
+		int[] Array = {5, 6, 3, 1 , 2};
+		int[] large = {10, 20, 25, 35};
+		Arrays.sort(Array);
+		
+		for(int i: Array){
+		    System.out.print(i);
+		}
+		int result = linear_s(Array, 3);
+		System.out.println(result);
+		
+		System.out.println("sum of array" + " " + sum_of_array(Array));
+		System.out.println("sorted or not" + " " + check_sorted(Array));
+		for(int i: Array){
+		    System.out.print(i);
+		}
+		
+		reverse_of_array(Array);
+		
+		System.out.print(second_largest(large));
+	}
+}
