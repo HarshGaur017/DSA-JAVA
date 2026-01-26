@@ -60,6 +60,90 @@ public class Main
         }
         return secondLargest;
     }
+
+	static int[] twoSum(int[] nums, int target){
+        for(int i=0; i<nums.length; i++){
+            for(int j=i+1; j<nums.length; j++){
+                if(nums[i]+ nums[j] == target){
+                    return new int[] {i, j};
+                }
+            }
+        }
+        return new int[] {-1, -1};
+    }
+
+	public static void moveZeroes(int[] nums){
+        int nonZeroIndex = 0;
+        
+        for(int value: nums){
+            if(value != 0){
+                nums[nonZeroIndex] = value;
+                
+                nonZeroIndex++;
+            }
+        }
+        
+        while(nonZeroIndex < nums.length){
+            nums[nonZeroIndex] = 0;
+            nonZeroIndex++;
+        }
+    }
+
+	static int pivotIndex(int[] nums){
+        int totalSum = 0;
+        for(int number: nums){
+            totalSum += number;
+        }
+        
+        int leftSum = 0;
+        for(int i=0; i<nums.length; i++){
+            int rightSum = totalSum - leftSum - nums[i];
+            if(leftSum == rightSum){
+                return i;
+            }
+            
+            leftSum += nums[i];
+        }
+        
+        return -1;
+    }
+	
+	static void sortZeroOneTwo(int[] nums){
+        int count0 = 0;
+        int count1 = 0;
+        int count2 = 0;
+        
+        for(int i: nums){
+            if(i == 0){
+                count0++;
+            } else if(i == 1){
+                count1++;
+            } else{
+                count2++;
+            }
+        }
+        
+        for(int i=0; i<count0; i++){
+            nums[i] = 0;
+        }
+        
+        for(int i=count0; i<count0 + count1; i++){
+            nums[i] = 1;
+        }
+        
+        for(int i=count0+count1; i<nums.length; i++){
+            nums[i] = 2;
+        }
+    }
+
+	static void rotateByK(int[] numbers, int k){
+        int length = numbers.length;
+        k = k % length;
+        
+        reverse(numbers, 0, length-1);
+        reverse(numbers, 0, k-1);
+        reverse(numbers, k, length-1);
+    }
     
 	public static void main(String[] args) {
 		int[] Array = {5, 6, 3, 1 , 2};
@@ -81,5 +165,37 @@ public class Main
 		reverse_of_array(Array);
 		
 		System.out.print(second_largest(large));
+		
+		int[] array = {1, 2, 3, 4, 5, 6};
+        int target = 10;
+int [] zeroesArray = {0, 1, 0, 3, 12};
+        
+        int[] result = twoSum(array, target);
+            for(int i: result){
+                System.out.println(i);
+            }
+
+	
+	int[] colorZeroes = {2,0,2,1,1,0};
+	moveZeroes(zeroesArray);
+	 for (int val : zeroesArray) {
+            System.out.print(val + " ");
+        }
+		int[] pivotArray = {1,7,3,6,5,6};
+		System.out.println(pivotIndex(pivotArray));
+		
+		sortZeroOneTwo(colorZeroes);
+		for(int i: colorZeroes){
+			System.out.print(i);
+		}
+
+		int[] nums1 = {1,2,3,4,5,6,7};
+	    int k = 3;
+	    
+	    rotateByK(nums1, k);
+	    for(int i: nums1){
+	        System.out.print(i);
+	    }
+
 	}
 }
