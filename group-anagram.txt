@@ -1,0 +1,68 @@
+import java.util.*;
+class Main {
+    public static void main(String[] args) {
+        // Map<String, Integer> map = new HashMap<>();
+        
+        // map.put("apple", 3);
+        // map.put("banana", 4);
+        ArrayList<String> fruits = new ArrayList<>();
+        fruits.add("apple");
+        fruits.add("banana");
+        fruits.add("oranges");
+        System.out.println(fruits);
+        fruits.remove("apple");
+        System.out.println(fruits);
+        System.out.println(fruits.get(1));
+        // System.out.println(map.get("apple"));
+        String[] words = {"cat", "car", "dog"};
+        
+        Map<Character, List<String>> map = new HashMap<>();
+        
+        for(String word: words){
+            char firstLetter = word.charAt(0);
+            
+            if(!map.containsKey(firstLetter)){
+                map.put(firstLetter, new ArrayList<>());
+            }
+            
+            map.get(firstLetter).add(word);
+        }
+        System.out.println(map);
+        
+        
+        String sc = "hello";
+        for(int i=0; i<sc.length(); i++){
+            char c = sc.charAt(i);
+            System.out.println(c);
+        }
+        
+        String result = "";
+        for(int i=0; i<sc.length(); i++){
+            result += sc.charAt(i);
+        }
+        System.out.println(result);
+        
+        String word = "eat";
+        char[] arr = word.toCharArray();
+        System.out.println(arr);
+        Arrays.sort(arr);
+        System.out.println(arr);
+        String sorted = new String(arr);
+        System.out.println(sorted);
+        
+         String[] strs = {"eat", "tea", "tan", "ate", "nat", "bat"};
+
+         Map<String, List<String>> mapNew = new HashMap<>();
+
+         for(String key: strs){
+            char[] c = key.toCharArray();
+            Arrays.sort(c);
+            String strt = new String(c);
+
+            mapNew.putIfAbsent(strt, new ArrayList<>());
+            mapNew.get(strt).add(key);
+         }
+         System.out.println(new ArrayList<>(mapNew.values()));
+
+    }
+}
