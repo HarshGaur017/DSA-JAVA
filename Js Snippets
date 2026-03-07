@@ -1,0 +1,105 @@
+// let a = 10;
+// function test(){
+//     console.log(a);
+//     let a = 20;
+// }
+
+// function counter(){
+//     let count = 10;
+//     return function() {
+//         count++;
+//         console.log(count);
+//     };
+// }
+
+// const c = counter();
+// c();
+// c();
+// c();
+// c();
+
+// function Person(name){
+//     this.name = name;
+// }
+
+// const t = new Person("Harsh");
+// console.log(t);
+
+// Person.prototype.sayHello = function (){
+//     console.log("Hello " + this.name);
+// };
+
+// const p = new Person("Rahul");
+// p.sayHello();
+//Primitives are stored by value not by reference
+// let a = 10;
+// let b = a;
+// b = 20;
+// console.log(a);
+// console.log(b);
+//refernce values
+// const obj1 = {name: "Aman"};
+// const obj2 = obj1;
+// obj2.name = "Harsh";
+// console.log(obj1);
+// console.log(obj2);
+
+//Shallow Copy means the nested object still holds the reference it is not still fully cloned or copied only copied first level of object.
+const user = {
+    name: "Rahul",
+    address: {city: "Delhi"}
+};
+
+const copy = {...user};
+
+copy.address.city = "Mumbai";
+copy.name = "harsh"
+
+console.log(user, copy);
+
+//Deep copy fully structred copies the entire object or clones the entire object.
+const deepCopy = JSON.parse(JSON.stringify(user));
+
+deepCopy.name = "Shubham";
+deepCopy.address.city = "Uttar Pradesh";
+
+console.log(user);
+console.log(deepCopy);
+
+function bankAccount() {
+    let balance = 0
+    
+    return {
+        deposit(amount){
+            balance+=amount;
+        },
+        getBalance() {
+            return balance
+        }
+    }
+}
+
+const account = bankAccount();
+account.deposit(100);
+account.deposit(500);
+
+console.log(account.getBalance());
+
+const p = new Promise((resolve, reject) => {
+    resolve(10);
+});
+
+p.then(v=> console.log(v));
+p.catch(err => console.log(err));
+
+Promise.all([Promise.resolve(1), Promise.resolve(2), Promise.resolve(3)]).then(console.log);
+
+// Promise.all([Promise.resolve(1), Promise.reject("error"), Promise.resolve(3)])
+
+Promise.race([new Promise(r => setTimeout(()=> r("A"), 2000)), new Promise(r => setTimeout(() => r("B"), 1000))]).then(console.log);
+
+Promise.any([
+  Promise.reject("fail"),
+  Promise.resolve("success"),
+  Promise.resolve("hello")
+]).then(console.log);
